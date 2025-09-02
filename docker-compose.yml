@@ -1,0 +1,6 @@
+version : "3.3"
+services :
+  web :
+     image : anirudhadak2/new-app:my-note-app
+     ports :
+         - "8000:8000"
