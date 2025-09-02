@@ -50,21 +50,30 @@ Here comes the task in which we create the repository on AWS using ECR where our
 1.Create a Docker File — Add the “Dockerfile” to the Django application. It contains the series of command which will be required for the creation of docker image.
 
 2.Build your Docker Image — Use the below command to create the docker image name as notes-app
-``` docker build -t notes-app . ```
+```
+ docker build -t notes-app .
+```
 
 3.Check whether the docker image is created or not using the below command.
-``` docker images | grep notes-app ```
+
+``` 
+docker images | grep notes-app
+```
 
 4.Create Repository on AWS ECR — It's time to open the AWS console and search for ECR. Then, click on the Create Repository button.
 You will find two options for the visibility of your repository i.e, Private and Public. The Private repository access is managed by IAM and repository policy permissions. Once you click on create repository button then, you need to give the name of your repository. If you enabled the scan on push option then, it helps in identifying software vulnerabilities in your container images.
 
 5.Push the created docker image of the Django application on Step 2 to AWS ECR —
 a) Authenticate your Docker client to the Amazon ECR registry. Authentication tokens must be obtained for each registry used, and these tokens are valid for 12 hours. The easiest way of doing this is to get the AWS AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then run the below command.
+
 ``` export AWS_ACCESS_KEY_ID=****** ```
 ``` export AWS_SECRET_ACCESS_KEY=****** ```
 
 After exporting the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, login to the AWS account using the below command.
-``` aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com ```
+
+``` 
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+```
 
 b) Identify the image to push using the docker images command:
 
@@ -72,10 +81,15 @@ c)Tag your image with the Amazon ECR registry, repository, and optional image ta
 
 The following example tags an image with the ID 480903dd8 as aws_account_id.dkr.ecr.region.amazonaws.com/notes-app.
 
-``` docker tag 480903dd8 aws_account_id.dkr.ecr.region.amazonaws.com/notes-app ```
+``` 
+docker tag 480903dd8 aws_account_id.dkr.ecr.region.amazonaws.com/notes-app
+```
 
 d) Push the docker image using the docker push command:
-``` docker push aws_account_id.dkr.ecr.region.amazonaws.com/notes-app ```
+
+``` 
+docker push aws_account_id.dkr.ecr.region.amazonaws.com/notes-app
+```
 
 What is AWS Elastic Container Service?
 
